@@ -17,7 +17,7 @@ git submodule init
 git submodule update
 git submodule update --remote
 
-# Check for repostore submodule
+# Check for aliastore submodule
 ALIASTORE_SUBMODULE="$SCRIPT_DIR/repostore"
 ALIASTORE_BACKUP="$ALIASTORE_SUBMODULE/backup.sh"
 ALIASTORE_RESTORE="$ALIASTORE_SUBMODULE/restore.sh"
