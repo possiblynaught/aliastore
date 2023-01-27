@@ -64,5 +64,5 @@ mv "$TEMP_RC_FILE" "$RC_FILE"
 . ${RC_FILE}
 # Notify user of completion and save location
 echo "
-Aliases from $INPUT_FILE have been copied to $RC_FILE, bashrc was reloaded, and a backup of the rc file was saved to $RC_FILE.old
+Aliases from $INPUT_FILE have been copied to $RC_FILE, rc was reloaded, and a backup of the rc file was saved to $RC_FILE.old
 "
