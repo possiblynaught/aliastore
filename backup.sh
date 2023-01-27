@@ -4,8 +4,10 @@
 #set -x
 set -Eeo pipefail
 
-### UNCOMMENT TO FORCE/OVERRIDE SAVE FILE ###
+### Force override of environmental variable for csv file
 #OUTPUT_FILE="/tmp/saved_aliases.csv" # Output csv file
+
+### Default targets and flag strings for the script, can be overriden by env vars
 # Bashrc location
 RC_FILE="$HOME/.bashrc"
 # Flag to indicate the start of custom bashrc additions
@@ -13,7 +15,7 @@ START_FLAG="#### Start Custom"
 # Flag to indicate the end of custom bashrc additions
 END_FLAG="#### End Custom"
 
-# Check if environmetal variable or override has been set, warn if missing
+# Check if environmetal variable override has been set, also warn if missing var
 if [ -z "$OUTPUT_FILE" ]; then
   if [ -z "$ALIASTORE_CSV_FILE" ]; then
     echo "Error, please export the output file location with: 
@@ -23,6 +25,10 @@ if [ -z "$OUTPUT_FILE" ]; then
     OUTPUT_FILE="$ALIASTORE_CSV_FILE"
   fi
 fi
+# Check for env variables to override local defines if present
+[ -n "$ALIASTORE_RC_FILE" ] && RC_FILE="$ALIASTORE_RC_FILE"
+[ -n "$ALIASTORE_START_FLAG" ] && START_FLAG="$ALIASTORE_START_FLAG"
+[ -n "$ALIASTORE_END_FLAG" ] && END_FLAG="$ALIASTORE_END_FLAG"
 # Check for bashrc
 [ -f "$RC_FILE" ] || (echo "Error, bashrc file not found: $RC_FILE"; exit 1)
 # Check for begin and end flags in rc file
