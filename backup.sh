@@ -76,5 +76,5 @@ done < "$TEMP_OUTPUT_FILE"
 rm -f "$TEMP_OUTPUT_FILE"
 # Notify user of completion and save location
 echo "
-Copied any new aliases from $RC_FILE, $(wc -l < ${OUTPUT_FILE}) aliases are now saved in: $OUTPUT_FILE
+Copied any new aliases from $RC_FILE, $(wc -l < "${OUTPUT_FILE}") aliases are now saved in: $OUTPUT_FILE
 "

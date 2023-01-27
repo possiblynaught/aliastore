@@ -42,9 +42,7 @@ cp "$RC_FILE" "$RC_FILE.old"
 if ! grep -qF "$START_FLAG" "$RC_FILE" || ! grep -qF "$END_FLAG" "$RC_FILE"; then
   sed -i "/${START_FLAG}/d" "$RC_FILE"
   sed -i "/${END_FLAG}/d" "$RC_FILE"
-  echo "" >> "$RC_FILE"
-  echo "$START_FLAG" >> "$RC_FILE"
-  echo "$END_FLAG" >> "$RC_FILE"
+  { echo; echo "$START_FLAG"; echo "$END_FLAG"; } >> "$RC_FILE"
 fi
 # Replace content between flags in the rc file
 HEAD_LINE=$(grep -nFm 1 "$START_FLAG" "$RC_FILE" | cut -d ":" -f 1)
@@ -61,7 +59,8 @@ done < "$INPUT_FILE"
 tail -n "$TAIL_LINE" < "$RC_FILE" >> "$TEMP_RC_FILE"
 mv "$TEMP_RC_FILE" "$RC_FILE"
 # Reload bashrc for current session
-. ${RC_FILE}
+# shellcheck source=/dev/null
+. "${RC_FILE}"
 # Notify user of completion and save location
 echo "
 Aliases from $INPUT_FILE have been copied to $RC_FILE, rc was reloaded, and a backup of the rc file was saved to $RC_FILE.old

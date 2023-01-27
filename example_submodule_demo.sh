@@ -22,7 +22,10 @@ ALIASTORE_SUBMODULE="$SCRIPT_DIR/aliastore"
 ALIASTORE_BACKUP="$ALIASTORE_SUBMODULE/backup.sh"
 ALIASTORE_RESTORE="$ALIASTORE_SUBMODULE/restore.sh"
 [ -d "$ALIASTORE_SUBMODULE" ] || (echo "Error, aliastore submodule not found: $ALIASTORE_SUBMODULE"; exit 1)
-[ -f "$ALIASTORE_BACKUP" ] && [ -f "$ALIASTORE_RESTORE" ] || (echo "Error, repostore script(s) not found in: $ALIASTORE_SUBMODULE"; exit 1)
+if [ ! -f "$ALIASTORE_BACKUP" ] || [ ! -f "$ALIASTORE_RESTORE" ]; then
+  echo "Error, repostore script(s) not found in: $ALIASTORE_SUBMODULE"
+  exit 1
+fi
 
 # Export submodule variables
 export ALIASTORE_CSV_FILE="$CSV_FILE"
