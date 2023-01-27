@@ -18,7 +18,7 @@ git submodule update
 git submodule update --remote
 
 # Check for aliastore submodule
-ALIASTORE_SUBMODULE="$SCRIPT_DIR/repostore"
+ALIASTORE_SUBMODULE="$SCRIPT_DIR/aliastore"
 ALIASTORE_BACKUP="$ALIASTORE_SUBMODULE/backup.sh"
 ALIASTORE_RESTORE="$ALIASTORE_SUBMODULE/restore.sh"
 [ -d "$ALIASTORE_SUBMODULE" ] || (echo "Error, aliastore submodule not found: $ALIASTORE_SUBMODULE"; exit 1)
@@ -30,7 +30,7 @@ export ALIASTORE_CSV_FILE="$CSV_FILE"
 export ALIASTORE_START_FLAG="# Start Test Alias Block"
 export ALIASTORE_END_FLAG="# End Test Alias Block"
 
-# Restore the repos using the backup script
+# Restore the repos using the restore script
 ${ALIASTORE_RESTORE}
 
 # Unset submodule variables
