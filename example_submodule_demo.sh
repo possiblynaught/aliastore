@@ -9,7 +9,7 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 ################################################################################
 # File to save/restore repositories to/from:
-CSV_FILE="$SCRIPT_DIR/saved_repos.csv"
+CSV_FILE="$SCRIPT_DIR/saved_aliases.csv"
 ################################################################################
 
 # Submodule update
@@ -27,8 +27,8 @@ ALIASTORE_RESTORE="$ALIASTORE_SUBMODULE/restore.sh"
 # Export submodule variables
 export ALIASTORE_CSV_FILE="$CSV_FILE"
 
-# Backup the repos using the backup script
-${ALIASTORE_BACKUP}
+# Restore the repos using the backup script
+${ALIASTORE_RESTORE}
 
 # Unset submodule variables
 unset ALIASTORE_CSV_FILE
